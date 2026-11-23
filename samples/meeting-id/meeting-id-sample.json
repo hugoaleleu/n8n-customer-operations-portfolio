@@ -1,0 +1,95 @@
+{
+  "name": "Hugo Leleu | Limited Sample | Meeting ID Generation",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "01aa3553-1dd6-45a3-a821-22de7bb73494",
+      "name": "Run Sample"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "096b4b4d-faab-4f5c-a88d-e4a04ec7052b",
+              "name": "meeting_notes",
+              "value": "Demo meeting: Casey will review the onboarding checklist. No deadline was agreed.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "d2c4c6e5-c8c3-4384-ace4-3dd9f6545d6b",
+      "name": "Example Meeting Notes"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nreturn $input.all().map(item => {\n  const data = item.json;\n\n  const notes = String(data.meeting_notes ?? '');\n\n  if (!notes.trim()) {\n    throw new Error('Original meeting notes are missing.');\n  }\n\n  // Use only the original notes to create a stable identity.\n  let hash = 2166136261;\n\n  for (let i = 0; i < notes.length; i++) {\n    hash ^= notes.charCodeAt(i);\n    hash = Math.imul(hash, 16777619);\n  }\n\n  const meetingId = String(\n    (hash >>> 0) % 100000000\n  ).padStart(8, '0');\n\n  return {\n    json: {\n      ...data,\n      meeting_id: meetingId\n    }\n  };\n});\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "624b4792-a2fd-40a1-a0d8-1b2888d73d9e",
+      "name": "Generate Meeting ID"
+    },
+    {
+      "parameters": {
+        "content": "## Limited portfolio sample\nHugo Leleu — Meeting ID generation only\n\nUses the original Generate Meeting ID code from the larger private workflow. Example input and this wrapper were prepared with ChatGPT assistance. No credentials or external services.\n\nSame exact text produces the same eight-digit reference. Hash collisions are possible: this is not a unique-ID or duplicate-prevention guarantee. Full AI, email and ownership logic is excluded.",
+        "height": 290,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -340
+      ],
+      "id": "079fd076-cd9b-4e37-b60b-143c01497d1d",
+      "name": "Sample Scope"
+    }
+  ],
+  "connections": {
+    "Run Sample": {
+      "main": [
+        [
+          {
+            "node": "Example Meeting Notes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Meeting Notes": {
+      "main": [
+        [
+          {
+            "node": "Generate Meeting ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
