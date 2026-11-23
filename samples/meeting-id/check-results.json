@@ -1,0 +1,33 @@
+{
+  "scope": "Exported Code-node JavaScript executed with stubbed n8n input; not live n8n execution.",
+  "checks": [
+    {
+      "name": "Repeatable eight-digit reference",
+      "passed": true
+    },
+    {
+      "name": "Changed example notes produce a different reference",
+      "passed": true
+    },
+    {
+      "name": "Input fields are preserved",
+      "passed": true
+    },
+    {
+      "name": "Missing and blank notes are rejected",
+      "passed": true
+    },
+    {
+      "name": "Multiple input records are handled",
+      "passed": true
+    },
+    {
+      "name": "No credentials or runtime data; workflow inactive",
+      "passed": true
+    }
+  ],
+  "example_output": {
+    "meeting_notes": "Demo meeting: Casey will review the onboarding checklist. No deadline was agreed.",
+    "meeting_id": "93524476"
+  }
+}
