@@ -62,6 +62,9 @@ The demonstration uses fictional data. Answers and calculations require review. 
 I built and iterated on the workflows, configured the integrations and structured outputs, developed the ownership-handling rules, investigated failures and tested the main scenarios. These projects combine my customer-facing experience with practical learning in AI and workflow automation.
 
 ## What is shared here
-This repository contains a public project presentation only. Workflow exports, prompts, executable code, detailed configuration, credentials, private correspondence and execution records are not included. No rights to the private implementation are granted by this presentation.
 
-A supervised demonstration can be discussed during a recruitment conversation. Access to private implementation material is considered separately.
+This repository contains project presentations and a [limited executable n8n sample](samples/meeting-id/). The sample shares only meeting-reference generation, with fictional input, documentation and reproducible checks.
+
+[Watch the Meeting Assistant demonstration](https://youtu.be/KZvan5m0iZc).
+
+The complete workflow exports, AI prompts, detailed integration configuration, credentials, private correspondence and execution records remain private. No rights to the private implementation are granted by this presentation. Access to private implementation material is considered separately.
